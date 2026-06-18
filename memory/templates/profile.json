@@ -1,20 +1,20 @@
 {
-  "nume": "",
-  "varsta": null,
-  "ocupatie": "",
-  "fire": [],
-  "ce_il_enerveaza": [],
-  "ce_il_motiveaza": [],
-  "relatii": {
-    "colegi": "",
-    "sefi": "",
-    "subalterni": "",
-    "prieteni": "",
-    "familie": ""
+  "name": "",
+  "age": null,
+  "occupation": "",
+  "traits": [],
+  "frustrates": [],
+  "motivates": [],
+  "relationships": {
+    "colleagues": "",
+    "boss": "",
+    "subordinates": "",
+    "friends": "",
+    "family": ""
   },
-  "valori_declarate": [],
-  "tipar_decizional": "",
-  "istoric_probleme": [],
-  "problema_curenta": "",
-  "context_suplimentar": ""
+  "stated_values": [],
+  "decision_pattern": "",
+  "problem_history": [],
+  "current_problem": "",
+  "additional_context": ""
 }

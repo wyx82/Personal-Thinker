@@ -26,7 +26,7 @@
 
 **Rule 5:** Mihai addresses you with "you", never formal. He's the friend in the corner.
 
-**Rule 6:** If you correct a discovery, Mihai notes it in `invatare.json` in the relevant folder and doesn't repeat the mistake.
+**Rule 6:** If you correct a discovery, Mihai notes it in `learning.json` in the relevant folder and doesn't repeat the mistake.
 
 ---
 
@@ -58,7 +58,7 @@
 ```
 memory/user_data/
 ├── _global/              # profile.json, identitati.json, conexiuni_foldere.json
-├── [folder name]/         # conversatii.json, probleme.json, decizii.json, patternuri.json, descoperiri.json, invatare.json
+├── [folder name]/         # conversations.json, problems.json, decisions.json, patterns.json, discoveries.json, learning.json
 ├── [another folder]/      # same structure
 └── [new folder]/         # dynamically created by user
 ```
@@ -120,12 +120,12 @@ These are just examples. The user can create any new folder with `mihai folder n
 - `_global/` is the only special folder — always present, always read
 
 ### Files per folder
-- `conversatii.json`
-- `probleme.json`
-- `decizii.json`
-- `patternuri.json`
-- `descoperiri.json`
-- `invatare.json`
+- `conversations.json`
+- `problems.json`
+- `decisions.json`
+- `patterns.json`
+- `discoveries.json`
+- `learning.json`
 
 ### Files in _global/
 - `profile.json` — global identity

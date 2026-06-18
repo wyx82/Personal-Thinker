@@ -74,7 +74,7 @@ Detalii mici spuse în treacăt care pot fi importante:
 ```
 memory/user_data/
 ├── _global/              # profile.json, identitati.json, conexiuni_foldere.json
-├── [folder divers]/      # conversatii.json, probleme.json, decizii.json, patternuri.json, descoperiri.json, invatare.json
+├── [folder name]/      # conversations.json, problems.json, decisions.json, patterns.json, discoveries.json, learning.json
 └── [alt folder]/         # aceeași structură
 ```
 

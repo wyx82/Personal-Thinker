@@ -38,28 +38,28 @@ def run_onboarding() -> dict:
     profile = {}
 
     # Essential questions (Rule 2)
-    profile["nume"] = ask("What's your name? (you can use a pseudonym)")
-    profile["varsta"] = ask("How old are you?")
+    profile["name"] = ask("What's your name? (you can use a pseudonym)")
+    profile["age"] = ask("How old are you?")
 
     # Fire - with options from config
     print(f"\n📌 Choose 3-5 traits that describe you:")
     print(f"Options: {', '.join(FIRE_OPTIONS)}")
     fire_input = ask(f"Your choices (e.g.: calm, direct, analytical)")
-    profile["fire"] = [x.strip() for x in fire_input.split(",") if x.strip()]
+    profile["traits"] = [x.strip() for x in fire_input.split(",") if x.strip()]
 
     # Follow-up (max from config)
     follow_up_count = 0
-    profile["context_suplimentar"] = ""
+    profile["additional_context"] = ""
 
     while follow_up_count < MAX_FOLLOW_UP:
         context_hint = ask(f"Follow-up question {follow_up_count + 1}/{MAX_FOLLOW_UP} (or 'done' to finish):")
         if context_hint.lower() in ("done", "deajuns", "destul"):
             break
         if context_hint.lower() != "later":
-            if profile["context_suplimentar"]:
-                profile["context_suplimentar"] += f" | {context_hint}"
+            if profile["additional_context"]:
+                profile["additional_context"] += f" | {context_hint}"
             else:
-                profile["context_suplimentar"] = context_hint
+                profile["additional_context"] = context_hint
         follow_up_count += 1
 
     return profile

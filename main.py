@@ -35,14 +35,14 @@ def print_help():
   📊 ANALYSIS:
     mihai audit          — Complete strategic audit
     mihai pattern        — Display your patterns
-    mihai descoperiri    — Discoveries to report
+    mihai discoveries    — Discoveries to report
     mihai stats          — Memory statistics
     mihai context        — Your complete profile
 
   🗂️ LOGGING:
-    mihai conversatie    — Log a conversation
-    mihai decizie        — Log a decision
-    mihai problema       — Log a problem
+    mihai conversation   — Log a conversation
+    mihai decision       — Log a decision
+    mihai problem        — Log a problem
 
   🔥 OTHER:
     mihai provoaca-ma    — A difficult question
@@ -146,13 +146,13 @@ def handle_command(agent: Agent, cmd: str) -> bool:
         identities = agent.get_identities()
         print("\n👤 IDENTITIES:")
         print("=" * 40)
-        print(f"\n  Global: {profile.get('nume', 'unknown')}")
-        print(f"  Age: {profile.get('varsta', '?')}")
-        print(f"  Traits: {', '.join(profile.get('fire', [])) or 'not specified'}")
+        print(f"\n  Global: {profile.get('name', 'unknown')}")
+        print(f"  Age: {profile.get('age', '?')}")
+        print(f"  Traits: {', '.join(profile.get('traits', [])) or 'not specified'}")
         if identities:
             print(f"\n  Per folder:")
             for ident in identities:
-                print(f"    {ident.get('folder')}: {ident.get('nume', '?')}")
+                print(f"    {ident.get('folder')}: {ident.get('name', '?')}")
         return False
 
     # ─── Profile ────────────────────────────────────────────────────────────
@@ -191,7 +191,7 @@ def handle_command(agent: Agent, cmd: str) -> bool:
         return False
 
     # ─── Discoveries ────────────────────────────────────────────────────────
-    if lower == "mihai descoperiri":
+    if lower == "mihai discoveries":
         all_discoveries = agent.get_all_discoveries()
         print("\n💡 DISCOVERIES PER FOLDER")
         print("=" * 40)
@@ -205,7 +205,7 @@ def handle_command(agent: Agent, cmd: str) -> bool:
         return False
 
     # ─── Log: Conversation ─────────────────────────────────────────────────
-    if lower == "mihai conversatie":
+    if lower == "mihai conversation":
         print("\n🗣️  LOG CONVERSATION")
         print("=" * 40)
 
@@ -222,7 +222,7 @@ def handle_command(agent: Agent, cmd: str) -> bool:
         return False
 
     # ─── Log: Decision ──────────────────────────────────────────────────────
-    if lower == "mihai decizie":
+    if lower == "mihai decision":
         print("\n⚖️  LOG DECISION")
         print("=" * 40)
 
@@ -239,7 +239,7 @@ def handle_command(agent: Agent, cmd: str) -> bool:
         return False
 
     # ─── Log: Problem ───────────────────────────────────────────────────────
-    if lower == "mihai problema":
+    if lower == "mihai problem":
         print("\n🚧 LOG PROBLEM")
         print("=" * 40)
 
@@ -267,7 +267,7 @@ def handle_command(agent: Agent, cmd: str) -> bool:
             ("energie", "What gives you energy? What kills it?"),
             ("valori", "What values really matter to you — and where do you compromise them?"),
             ("frici", "What are you most afraid of right now?"),
-            ("relatii", "How are your main relationships right now?"),
+            ("relationships", "How are your main relationships right now?"),
         ]
 
         for key, intrebare in intrebari:
@@ -290,9 +290,9 @@ def handle_command(agent: Agent, cmd: str) -> bool:
     # ─── Provocare ──────────────────────────────────────────────────────────
     if lower == "mihai provoaca-ma":
         profile = agent.get_profile()
-        nume = profile.get("nume", "friend")
+        name = profile.get("name", "friend")
         provocare = agent.chat(
-            f"Generate a difficult question for {nume}, based on their data: {profile}. One question, direct, that provokes.",
+            f"Generate a difficult question for {name}, based on their data: {profile}. One question, direct, that provokes.",
             mode="provocare",
         )
         print(f"\n🔥 {provocare}")
@@ -352,12 +352,12 @@ def main():
         sys.exit(1)
 
     profile = agent.get_profile()
-    nume = profile.get("nume", "friend")
-    print(f"Hi, {nume}! Type something or a command.\n")
+    name = profile.get("name", "friend")
+    print(f"Hi, {name}! Type something or a command.\n")
 
     while True:
         try:
-            user_input = input(f"{nume}: ").strip()
+            user_input = input(f"{name}: ").strip()
         except (KeyboardInterrupt, EOFError):
             print("\nSee you! 👋")
             break

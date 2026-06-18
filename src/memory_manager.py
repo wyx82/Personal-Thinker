@@ -16,12 +16,12 @@ class MemoryManager:
 
     # Standard files per folder (excluding _global)
     FOLDER_FILES = [
-        "conversatii.json",
-        "probleme.json",
-        "decizii.json",
-        "patternuri.json",
-        "descoperiri.json",
-        "invatare.json",
+        "conversations.json",
+        "problems.json",
+        "decisions.json",
+        "patterns.json",
+        "discoveries.json",
+        "learning.json",
     ]
 
     def __init__(self):
@@ -170,7 +170,7 @@ class MemoryManager:
         item = dict(item)  # copy
         base_name = filename.replace(".json", "")
         item["id"] = f"{base_name}_{len(data) + 1}_{datetime.now().strftime('%H%M%S')}"
-        item["data"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        item["date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         if folder:
             item["_folder"] = folder
@@ -184,7 +184,7 @@ class MemoryManager:
         data = self.load_global(filename) or []
         item = dict(item)
         item["id"] = f"global_{len(data) + 1}"
-        item["data"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        item["date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         data.append(item)
         self.save_global(filename, data)
         return item["id"]
@@ -270,7 +270,7 @@ class MemoryManager:
         """
         all_patterns: dict[str, dict] = {}
         for folder_name in self.get_all_folders():
-            patterns = self.load("patternuri.json", folder_name)
+            patterns = self.load("patterns.json", folder_name)
             if patterns:
                 all_patterns[folder_name] = patterns
         return all_patterns
@@ -279,7 +279,7 @@ class MemoryManager:
         """Return discoveries from ALL folders."""
         all_discoveries: dict[str, list[dict]] = {}
         for folder_name in self.get_all_folders():
-            discoveries = self.load("descoperiri.json", folder_name)
+            discoveries = self.load("discoveries.json", folder_name)
             if discoveries:
                 all_discoveries[folder_name] = discoveries
         return all_discoveries
@@ -288,7 +288,7 @@ class MemoryManager:
         """Return learnings from ALL folders."""
         all_learning: dict[str, list[dict]] = {}
         for folder_name in self.get_all_folders():
-            learning = self.load("invatare.json", folder_name)
+            learning = self.load("learning.json", folder_name)
             if learning:
                 all_learning[folder_name] = learning
         return all_learning
@@ -310,12 +310,12 @@ class MemoryManager:
                 for item in items:
                     text = json.dumps(item, ensure_ascii=False).lower()
                     if person_lower in text:
-                        context = item.get("despre", item.get("descriere", ""))[:100]
+                        context = item.get("about", item.get("description", ""))[:100]
                         results.append({
-                            "tip": tip,
-                            "data": item.get("data", ""),
+                            "type": tip,
+                            "date": item.get("date", ""),
                             "context": context,
-                            "source": item.get("cu_cine", ""),
+                            "source": item.get("with_who", ""),
                             "folder": folder_name,
                         })
 

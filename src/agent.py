@@ -42,37 +42,37 @@ class Agent:
         profile = self.memory.get_profile()
 
         # Global profile
-        if profile.get("nume"):
+        if profile.get("name"):
             parts.append(f"## Global Profile")
-            parts.append(f"Name: {profile.get('nume')}")
-            if profile.get("varsta"):
-                parts.append(f"Age: {profile.get('varsta')}")
-            if profile.get("fire"):
-                parts.append(f"Traits: {', '.join(profile.get('fire', []))}")
-            if profile.get("ce_il_motiveaza"):
-                parts.append(f"Motivates: {', '.join(profile.get('ce_il_motiveaza', []))}")
-            if profile.get("ce_il_enerveaza"):
-                parts.append(f"Frustrates: {', '.join(profile.get('ce_il_enerveaza', []))}")
-            if profile.get("problema_curenta"):
-                parts.append(f"Current problem: {profile.get('problema_curenta')}")
-            if profile.get("context_suplimentar"):
-                parts.append(f"Context: {profile.get('context_suplimentar')}")
+            parts.append(f"Name: {profile.get('name')}")
+            if profile.get("age"):
+                parts.append(f"Age: {profile.get('age')}")
+            if profile.get("traits"):
+                parts.append(f"Traits: {', '.join(profile.get('traits', []))}")
+            if profile.get("motivates"):
+                parts.append(f"Motivates: {', '.join(profile.get('motivates', []))}")
+            if profile.get("frustrates"):
+                parts.append(f"Frustrates: {', '.join(profile.get('frustrates', []))}")
+            if profile.get("current_problem"):
+                parts.append(f"Current problem: {profile.get('current_problem')}")
+            if profile.get("additional_context"):
+                parts.append(f"Context: {profile.get('additional_context')}")
 
         # Active folder
         active_folder = self.memory.get_active_folder()
         if active_folder:
             parts.append(f"\n## Active Folder: {active_folder}")
 
-            patterns = self.memory.load("patternuri.json", active_folder)
+            patterns = self.memory.load("patterns.json", active_folder)
             if patterns and any(patterns.values()):
                 parts.append(f"\n### Patterns in {active_folder}")
                 for cat, items in patterns.items():
                     if items:
                         parts.append(f"{cat}: {', '.join(items) if isinstance(items, list) else items}")
 
-            discoveries = self.memory.load("descoperiri.json", active_folder)
+            discoveries = self.memory.load("discoveries.json", active_folder)
             if discoveries:
-                unreported = [d for d in discoveries if not d.get("semnlat_lui_mihai", False)]
+                unreported = [d for d in discoveries if not d.get("reported_to_mihai", False)]
                 if unreported:
                     parts.append(f"\n### Discoveries to report in {active_folder}:")
                     for d in unreported:
@@ -147,16 +147,16 @@ class Agent:
             prob = match.group(1) + "%" if match else "unknown"
 
             discovery = {
-                "tip": "procent",
-                "descriere": reply[:300],
-                "bazat_pe": "heuristic: 'am observat' + procent",
-                "probabilitate": prob,
-                "predictie": "",
+                "type": "percentage",
+                "description": reply[:300],
+                "based_on": "heuristic: 'am observat' + percentage",
+                "probability": prob,
+                "prediction": "",
                 "impact": "",
-                "semnlat_lui_mihai": True,
-                "validat": False,
+                "reported_to_mihai": True,
+                "validated": False,
             }
-            self.memory.append("descoperiri.json", discovery, folder)
+            self.memory.append("discoveries.json", discovery, folder)
 
     # ─── Folder operations ──────────────────────────────────────────────────
 
@@ -189,12 +189,12 @@ class Agent:
     ) -> str:
         """Log a conversation to the specified or active folder."""
         target_folder = folder or self.memory.get_active_folder() or "general"
-        return self.memory.append("conversatii.json", {
-            "cu_cine": cu_cine,
-            "despre": despre,
-            "emotii_mihai": emotii_mihai,
-            "decizii_extrase": decizii,
-            "actiuni": actiuni,
+        return self.memory.append("conversations.json", {
+            "with_who": cu_cine,
+            "about": despre,
+            "emotions": emotii_mihai,
+            "decisions_made": decizii,
+            "actions": actiuni,
         }, target_folder)
 
     def log_decision(
@@ -208,15 +208,15 @@ class Agent:
     ) -> str:
         """Log a decision to the specified or active folder."""
         target_folder = folder or self.memory.get_active_folder() or "general"
-        return self.memory.append("decizii.json", {
+        return self.memory.append("decisions.json", {
             "context": context,
-            "decizia": decizia,
-            "rational": rational,
+            "decision": decizia,
+            "rationale": rational,
             "emotional": emotional,
-            "rezultat_asteptat": rezultat_asteptat,
-            "rezultat_real": "",
+            "expected_result": rezultat_asteptat,
+            "actual_result": "",
             "regret": "",
-            "lectie": "",
+            "lesson": "",
         }, target_folder)
 
     def log_problem(
@@ -229,21 +229,21 @@ class Agent:
     ) -> str:
         """Log a problem to the specified or active folder."""
         target_folder = folder or self.memory.get_active_folder() or "general"
-        return self.memory.append("probleme.json", {
-            "tip": tip,
-            "descriere": descriere,
-            "cauza_radacina": cauza_radacina,
-            "actiuni_luate": actiuni_luate,
-            "rezultat": "",
-            "status": "activa",
+        return self.memory.append("problems.json", {
+            "type": tip,
+            "description": descriere,
+            "root_cause": cauza_radacina,
+            "actions_taken": actiuni_luate,
+            "result": "",
+            "status": "active",
         }, target_folder)
 
     def log_problem_from_chat(self, descriere: str, folder: str | None = None) -> str:
         """Log a problem detected in conversation."""
         return self.log_problem(
-            tip="detectata_in_conversatie",
+            tip="detected_in_conversation",
             descriere=descriere,
-            cauza_radacina="necunoscuta",
+            cauza_radacina="unknown",
             folder=folder,
         )
 
