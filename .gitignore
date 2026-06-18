@@ -1,0 +1,6 @@
+memory/user_data/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.env
