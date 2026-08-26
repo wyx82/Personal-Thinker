@@ -1,4 +1,5 @@
 memory/user_data/
+.claude/
 __pycache__/
 *.pyc
 *.pyo

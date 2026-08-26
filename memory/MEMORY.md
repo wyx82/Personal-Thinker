@@ -1,0 +1,8 @@
+- [Investiții Dubai - conversații, plăți, decizii](user_data/Investiții Dubai/conversations.json) — contacte, plăți Binghatti, decizii escalare
+- [Sukoon LPR200017208](user_data/Investiții Dubai/sukoon-lpr200017208-20260621.json) — poliță Life Protect Banca, 147K AED plătit, valoare cont 116,349 AED (21-Jun-2026)
+- [Sukoon Disclaimer T&C](user_data/Investiții Dubai/sukoon-disclaimer-2026.json) — Terms & Conditions semnate pe portal, risc de pierdere totală a capitalului asumat oficial
+- [Sukoon Life Protect Banca - cercetare](user_data/Investiții Dubai/sukoon-life-protect-banca-cercetare.json) — Key Features Document via Mashreq Bank: sales load 30-55% An1, surrender charges 30/20/15/10/0%, loyalty bonus 5-10%
+- [Elite Tower 1701 - Marina](user_data/Investiții Dubai/Elite Tower/summary.json) — Chiriaș NOU: Shailja Khemani, 75,000 AED/an, start 06/08/2026, contract 1 an. Target anterior 90-95k, a închis la 75k. Gol 1 lună (29 iun–5 aug). Addendum favorabil semnat. 2 post-dated cheques.
+- [Binghatti MBUL-B721](user_data/Investiții Dubai/binghatti-mbul-b721.json) — Studio MAYBACH ULTIMATE LUXURY 1.35M AED. Plătit: 591,822 AED (milestone 60% + 6th installment). SOA 16 iulie 2026 confirmă poziția la zi — credit 92.95 AED. Discrepanță 97K AED între memo și SOA, neclarificată dar nezultată de Dez.
+- [BTC Trading - Holdings](user_data/Trading BTC/holdings.json) — BTC: 0.90013 ($54,478), ETH: 55.3 ($133,028), USDC: $70,103 available / $129,703 total (14 iul 2026)
+- [BTC Trading - Poziții P1-P11](user_data/Trading BTC/positions.json) — 7 poziții deschise, unrealized P&L: -$5,341. BTC price: $60,550. P10 cel mai mare poziție: 0.39966 BTC @ $64,151
